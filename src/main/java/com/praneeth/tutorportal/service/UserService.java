@@ -1,5 +1,6 @@
 package com.praneeth.tutorportal.service;
 
+import com.praneeth.tutorportal.exception.NotFoundException;
 import com.praneeth.tutorportal.dto.CreateUserRequest;
 import com.praneeth.tutorportal.dto.UserResponse;
 import com.praneeth.tutorportal.model.User;
@@ -39,7 +40,7 @@ public class UserService {
     public UserResponse findById(Long id) {
         return userRepository.findById(id)
                 .map(this::toResponse)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     private UserResponse toResponse(User u) {
